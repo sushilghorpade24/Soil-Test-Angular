@@ -1,0 +1,53 @@
+<div class="d-flex">
+    
+    <nav id="sidebar" [ngClass]="{'collapsed': isCollapsed}" class="bg-dark text-white d-flex flex-column vh-100 p-3">
+      
+     
+      <button class="btn btn-secondary btn-sm mb-3 toggle-btn" (click)="toggleSidebar()">
+        <i [ngClass]="isCollapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></i>
+      </button>
+  
+      
+      <div class="sidebar-header text-center mb-4" *ngIf="!isCollapsed">
+        <i class="fas fa-seedling text-success fa-2x"></i>
+        <h4 class="mt-2">Soil Test</h4>
+      </div>
+  
+     
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="users">
+            <i class="fas fa-user-plus me-2"></i> <span *ngIf="!isCollapsed">New Users</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="sites">
+            <i class="fas fa-map-marker-alt me-2"></i> <span *ngIf="!isCollapsed">Sites</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="test">
+            <i class="fas fa-vial me-2"></i> <span *ngIf="!isCollapsed">Test</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="test-types">
+            <i class="fas fa-chart-bar me-2"></i> <span *ngIf="!isCollapsed">Test Types</span>
+          </a>
+        </li> -->
+      </ul>
+  
+      
+      <div class="mt-auto">
+        <p class="small" *ngIf="!isCollapsed">Logged in as: <strong>{{masterSer.loggedUserData?.userName}}</strong></p>
+        <button (click)="onLogOff()" class="btn btn-danger w-100 d-flex align-items-center justify-content-center">
+          <i class="fas fa-sign-out-alt me-2"></i> <span  *ngIf="!isCollapsed">Logout</span>
+        </button>
+      </div>
+    </nav>
+  
+   
+    <div class="content p-4 flex-grow-1">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

@@ -1,0 +1,109 @@
+/* General container styling with background image */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/soil.test.jpg') no-repeat center center/cover;
+  /* background: url('/soil1.jpg') no-repeat center center/cover; */
+}
+
+/* Form container with more transparency */
+.form-container {
+  background: rgba(255, 255, 255, 0.2); /* More transparent */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+  backdrop-filter: blur(15px); /* Stronger Glass Effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for better visibility */
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 20px;
+  color: #fff; /* Make text white for better contrast */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: white; /* Label color for contrast */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.2); /* More transparency */
+  color: #fff;
+  backdrop-filter: blur(5px);
+}
+
+/* Placeholder color */
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(0, 123, 255, 0.6); /* Transparent button */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: rgba(0, 86, 179, 0.8);
+}
+
+/* Switch between login/register */
+.switch {
+  margin-top: 15px;
+}
+
+.switch a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.alert {
+  background: rgba(255, 0, 0, 0.2);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}
+/* Add these styles to highlight invalid fields */
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875em;
+}

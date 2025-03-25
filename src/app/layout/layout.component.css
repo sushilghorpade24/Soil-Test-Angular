@@ -1,0 +1,64 @@
+/* Sidebar Styling */
+#sidebar {
+  width: 250px;
+  transition: width 0.3s ease-in-out;
+  height: 100vh; /* Make the sidebar span the full height */
+  background-color: #343a40; /* Sidebar background color */
+  position: fixed; /* Keep sidebar fixed */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure the sidebar stays on top */
+}
+
+#sidebar.collapsed {
+  width: 60px; /* Reduced width for collapsed sidebar */
+}
+
+#sidebar .nav-link {
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+}
+
+#sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#sidebar .nav-link i {
+  font-size: 1.2rem;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #6c757d;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  z-index: 1001; /* Ensure the button is above the sidebar */
+}
+
+/* Content Area Styling */
+.content {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  border-left: 1px solid #ddd;
+  margin-left: 250px; /* Offset content from sidebar */
+  background-image: url('/soil1.jpg'); /* Set background image */
+  background-position: center center;
+  background-size: cover;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* When Sidebar is Collapsed */
+#sidebar.collapsed + .content {
+  margin-left: 60px; /* Adjust content when sidebar is collapsed */
+}
+

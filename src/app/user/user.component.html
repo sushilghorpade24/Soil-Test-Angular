@@ -1,0 +1,115 @@
+<div class="d-flex">
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <h5 class="text-center mb-1 fw-bold heading">
+                <i class="fas fa-user"></i> User Management
+            </h5>
+            @if(isNewFormVisible()){
+            <div class="card p-4 shadow-lg">
+                <form #userForm="ngForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Username: </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input type="text" class="form-control" id="userName" name="userName"
+                                    [(ngModel)]="userObj.userName" placeholder="Enter username" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="emailId" name="emailId"
+                                    [(ngModel)]="userObj.emailId" placeholder="Enter email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name :</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input type="text" class="form-control" id="fullName" name="fullName"
+                                    [(ngModel)]="userObj.fullName" placeholder="Enter full name" required>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Password:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    [(ngModel)]="userObj.password" placeholder="Enter password" required>
+                            </div>
+                        </div>
+                    </div>
+                    @if(userObj.userId==0){
+                    <button (click)="addNewUser()" type="submit" class="btn btn-primary btn-icon">
+                        <span><i class="fas fa-plus"></i> Add User</span>
+                    </button>
+                    }@else {
+                    <button (click)="onUserUpadte()" type="submit" class="btn btn-warning btn-icon">
+                        <span><i class="fas fa-edit"></i> Update User</span>
+                    </button>
+                    }
+
+                </form>
+            </div>
+            }
+
+            <div class="mt-4">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Sr no</th>
+                            <th><i class="fas fa-user"></i> Username</th>
+                            <th><i class="fas fa-envelope"></i> Email</th>
+                            <th><i class="fas fa-user-tag"></i> Full Name</th>
+                            <th><i class="fas fa-id-badge"></i> Role</th>
+                            <th><i class="fas fa-project-diagram"></i> Project</th>
+                            <th><i class="fas fa-calendar-alt"></i> Created Date</th>
+                            <th><i class="fas fa-cogs"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of userList; let i = index">
+
+                            <td>{{ i+1}}</td>
+                            <td>{{user.userName}}</td>
+                            <td>{{user.emailId}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>{{user.role}}</td>
+                            <td>{{user.projectName}}</td>
+                            <td>{{user.createdDate}}</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <button (click)="onEdit(user)" class="btn btn-success btn-sm btn-icon"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button (click)="deleteUsers(user.userId)"
+                                        class="btn btn-danger btn-sm btn-icon ms-2"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button class="floating-button" (click)="showHideForm()">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>

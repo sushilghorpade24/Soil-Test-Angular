@@ -1,0 +1,124 @@
+<div class="auth-container">
+  <!-- Login Form -->
+  <div *ngIf="showLoginForm" class="form-container">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="login-email">Username</label>
+        <input
+          type="email"
+          name="userName"
+          [(ngModel)]="loginObj.userName"
+          id="login-email"
+          placeholder="Enter your email"
+          required
+          #userName="ngModel"
+          [ngClass]="{'is-invalid': userName.invalid && userName.touched}"
+        />
+        <div *ngIf="userName.invalid && userName.touched" class="invalid-feedback">
+          Username is required and must be a valid email.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="loginObj.password"
+          id="login-password"
+          placeholder="Enter your password"
+          required
+          #password="ngModel"
+          [ngClass]="{'is-invalid': password.invalid && password.touched}"
+        />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          Password is required.
+        </div>
+      </div>
+      <button type="submit" class="btn" [disabled]="loginForm.invalid">Login</button>
+      <div class="switch">
+        <a href="#" (click)="toggleForm($event)">Don't have an account? Register</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Register Form -->
+  <div *ngIf="!showLoginForm" class="form-container">
+    <h2>Register</h2>
+    <div class="alert" *ngIf="showErrorMessage">
+      All fields are required!
+    </div>
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="signup-username">Username</label>
+        <input
+          type="text"
+          name="userName"
+          [(ngModel)]="newUserObj.userName"
+          id="signup-username"
+          placeholder="Enter your username"
+          required
+          #userName="ngModel"
+          [ngClass]="{'is-invalid': userName.invalid && userName.touched}"
+        />
+        <div *ngIf="userName.invalid && userName.touched" class="invalid-feedback">
+          Username is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-fullName">Full Name</label>
+        <input
+          type="text"
+          name="fullName"
+          [(ngModel)]="newUserObj.fullName"
+          id="signup-fullName"
+          placeholder="Enter your full name"
+          required
+          #fullName="ngModel"
+          [ngClass]="{'is-invalid': fullName.invalid && fullName.touched}"
+        />
+        <div *ngIf="fullName.invalid && fullName.touched" class="invalid-feedback">
+          Full name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input
+          type="email"
+          name="emailId"
+          [(ngModel)]="newUserObj.emailId"
+          id="signup-email"
+          placeholder="Enter your email"
+          required
+          email
+          #emailId="ngModel"
+          [ngClass]="{'is-invalid': emailId.invalid && emailId.touched}"
+        />
+        <div *ngIf="emailId.invalid && emailId.touched" class="invalid-feedback">
+          Please enter a valid email.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="newUserObj.password"
+          id="signup-password"
+          placeholder="Enter your password"
+          required
+          minlength="6"
+          #password="ngModel"
+          [ngClass]="{'is-invalid': password.invalid && password.touched}"
+        />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          Password is required and must be at least 6 characters.
+        </div>
+      </div>
+      <button type="submit" class="btn" [disabled]="registerForm.invalid">Register</button>
+      <div class="switch">
+        <a href="#" (click)="toggleForm($event)">Back to Login</a>
+      </div>
+    </form>
+  </div>
+</div>

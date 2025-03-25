@@ -1,0 +1,210 @@
+
+<div>
+<div class="row">
+    <div class="col-md-2 testsidebar">
+        <h4>Tests</h4>
+        <button (click)="toggleTestForm()" class="btn btn-success w-100 mb-1" onclick="openTestForm()">
+            <i class="fas fa-plus"></i> Add New Test
+        </button>
+        <div class="list-group" id="testList">
+            <!-- Dynamically added test items -->
+             @for (item of testList; track $index) {
+                <a (click)="setActiveTest(item.testId)" [ngClass]="activeTest==item.testId?'active':''" class="list-group-item list-group-item-action" data-id="1738477545287">{{item.testName}}</a>
+             }
+        </div>
+    </div>
+    <div class="col-md-10 p-4 sideContent">
+        @if(isNewTest){
+            <div class="form-container" id="testFormContainer">
+                <h4>Create / Edit Test</h4>
+                <form id="testForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="mb-1">
+                                <label for="testName" class="form-label">Test Name</label>
+                                <input type="text" name="testName" [(ngModel)]="testObj.testName" class="form-control" id="testName" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-1">
+                                <label for="testDate" class="form-label">Test Date</label>
+                                <input type="date" class="form-control" name="testDate" [(ngModel)]="testObj.testDate" id="testDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="mb-1">
+                                <label for="testName" class="form-label"> Site</label>
+                                <select name="" name="siteId" [(ngModel)]="testObj.siteId" class="form-select">
+                                    <option value="">Select Site</option>
+                                    @for(item of siteList$|async;track $index){
+                                        <option [value]="item.siteId">{{item.siteName}}</option>
+                                    }
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-1">
+                                <label for="testName" class="form-label"> Engineer</label>
+                                <select name="" name="engineerId" [(ngModel)]="testObj.engineerId" class="form-select">
+                                    <option value="">Select Engineer</option>
+                                    @for(item of userList$|async;track $index){
+                                        <option [value]="item.userId">{{item.userName}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-1">
+                                <label for="testName" class="form-label"> Test Type</label>
+                                <select name="" name="testTypeId" [(ngModel)]="testObj.testTypeId" class="form-select">
+                                    <option value="">Select Test Type</option>
+                                    @for(item of testTypes$|async;track $index){
+                                        <option [value]="item.testTypeId">{{item.testName}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-6">
+                            <label for="remarks" class="form-label"> Remarks</label>
+                            <textarea name="remarks" class="form-control "  [(ngModel)]="testObj.remarks" id=""></textarea>
+                        </div>
+                    </div>
+                   
+                    
+                   
+                    <button type="submit" class="btn btn-primary" (click)="onSaveTest()" >Save Test</button>
+                </form>
+            </div>
+        }
+        
+        <div class="form-container mt-4" id="measurementFormContainer">
+            <h4>Measurements for Selected Test</h4>
+            <form id="siteForm">
+                <div class="row mb-1">
+                    <div class="col-md-4">
+                        <label class="form-label">Excavated Hole Volume (m³):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-cube"></i></span>
+                            <input type="number" name="excavatedHoleVolume" [(ngModel)]="measurementObj.excavatedHoleVolume" class="form-control" id="excavatedHoleVolume" value="0.01"
+                                placeholder="Enter volume">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Wet Soil Weight (kg):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-weight"></i></span>
+                            <input type="number" name="wetSoilWeight" [(ngModel)]="measurementObj.wetSoilWeight" class="form-control" id="wetSoilWeight" value="0.01"
+                                placeholder="Enter weight">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Moisture Content (%):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-tint"></i></span>
+                            <input type="number" name="moistureContent" [(ngModel)]="measurementObj.moistureContent" class="form-control" id="moistureContent" value="100"
+                                placeholder="Enter content percentage">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Dry Soil Weight (kg):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-weight-hanging"></i></span>
+                            <input type="number" name="drySoilWeight" [(ngModel)]="measurementObj.drySoilWeight" class="form-control" id="drySoilWeight" value="0.01"
+                                placeholder="Enter weight">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Sand Volume Used (m³):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-cubes"></i></span>
+                            <input type="number" name="sandVolumeUsed" [(ngModel)]="measurementObj.sandVolumeUsed" class="form-control" id="sandVolumeUsed" value="0"
+                                placeholder="Enter volume">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Dry Density (kg/m³):</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-weight-hanging"></i></span>
+                            <input type="number" name="dryDensity" [(ngModel)]="measurementObj.dryDensity" class="form-control" id="dryDensity" value="0.01"
+                                placeholder="Enter density">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-6">
+                        <label class="form-label">Soil Classification:</label>
+                        <input type="text" name="soilClassification" [(ngModel)]="measurementObj.soilClassification" class="form-control" id="soilClassification" value="string"
+                            placeholder="Enter classification">
+                    </div>
+                </div>
+                <button (click)="addMeasurements()" type="submit" class="btn btn-primary btn-icon ">
+                    <span><i class="fas fa-plus"></i> Add </span>
+                </button>
+                <button type="submit" class="btn btn-warning  btn-icon ">
+                    <span><i class="fas fa-edit"></i> Update</span>
+                </button>
+            </form>
+            <div class="mt-3">
+                <h5>Measurements List</h5>
+                <!-- <ul class="list-group" id="measurementList">
+                     Dynamically added measurement items 
+                </ul> -->
+                <div class="mt-4">
+                    <table class="table table-hover table-bordered text-center">
+                        <thead class="table-primary">
+                            <tr>
+                                <th><i class="fas fa-hashtag"></i> Sr No</th>
+                                <th><i class="fas fa-cube"></i> Excavated Hole Volume</th>
+                                <th><i class="fas fa-weight"></i> Wet Soil Weight</th>
+                                <th><i class="fas fa-tint"></i> Moisture Content</th>
+                                <th><i class="fas fa-balance-scale"></i> Dry Soil Weight</th>
+                                <th><i class="fas fa-cubes"></i> Sand Volume Used</th>
+                                <th><i class="fas fa-weight-hanging"></i> Dry Density</th>
+                                <th><i class="fas fa-layer-group"></i> Soil Classification</th>
+                                <!-- <th><i class="fas fa-calendar-alt"></i> Created Date</th> -->
+                                <th><i class="fas fa-cogs"></i> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let measurement of measurementList; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ measurement.excavatedHoleVolume }}</td>
+                                <td>{{ measurement.wetSoilWeight }}</td>
+                                <td>{{ measurement.moistureContent }}</td>
+                                <td>{{ measurement.drySoilWeight }}</td>
+                                <td>{{ measurement.sandVolumeUsed }}</td>
+                                <td>{{ measurement.dryDensity }}</td>
+                                <td>{{ measurement.soilClassification }}</td>
+                                <!-- <td>{{ measurement.createdDate | date:'yyyy-MM-dd HH:mm' }}</td> -->
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button (click)="onEdit(measurement)" class="btn btn-success btn-sm btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <!-- (click)="deleteMeasurementById(measurement.measurementId)" -->
+                                        <button  
+                                            class="btn btn-danger btn-sm btn-icon ms-2">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
