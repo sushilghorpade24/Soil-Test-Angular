@@ -1,12 +1,21 @@
 /* General container styling with background image */
-.auth-container {
+/* .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: url('/soil.test.jpg') no-repeat center center/cover;
-  /* background: url('/soil1.jpg') no-repeat center center/cover; */
+ 
+} */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #e0c3fc, #8ec5fc, #7366ff, #5a189a);
 }
+
+
 
 /* Form container with more transparency */
 .form-container {

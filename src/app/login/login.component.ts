@@ -41,7 +41,7 @@ export class LoginComponent {
         localStorage.setItem("soilUser", JSON.stringify(res.data))
         this.router.navigateByUrl('layout');
       } else {
-        alert(res.message);
+        alert(res.message+"Error to Login please Try Again");
       }
     })
   };
